@@ -132,7 +132,7 @@ class Grabber
     /**
      * Directly dowload the media file.
      */
-    public function download() 
+    public function download()
     {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');

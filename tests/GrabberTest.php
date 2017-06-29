@@ -8,7 +8,7 @@ use Zeeshan\Instagrab\Grabber;
 class GrabberTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedExceptionMesage "Url is not valid." 
+     * @expectedExceptionMesage "Url is not valid."
      */
     public function testGrabberMustThrowExceptionForNotAValidURL()
     {
