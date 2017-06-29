@@ -79,7 +79,7 @@ class Grabber
      */
     public function setFileUrl() : Grabber
     {
-        if (array_key_exists('og:image', $this->metaTags)) {
+        if (array_key_exists('og:image', $this->metaTags) && !array_key_exists('og:video', $this->metaTags)) {
             $this->fileUrl = $this->metaTags['og:image'];
             return $this;
         }
@@ -129,17 +129,19 @@ class Grabber
         return $this->fileUrl;
     }
 
-    public function download(string $path) 
+    /**
+     * Directly dowload the media file.
+     */
+    public function download() 
     {
-        if (!is_dir($path) || !is_writable($path)) {
-            throw new Exception('Given path does not exist or is not writable');
-        }
-
-        $fileName = basename($this->fileUrl);
-
-        $path = rtrim($path, '') . '/' . $fileName;
-
-        file_put_contents($path, file_get_contents($this->fileUrl));
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($this->fileUrl));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        readfile($this->fileUrl);
     }
 
     /**
