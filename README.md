@@ -1,5 +1,5 @@
 ![Instagrab](http://i.imgur.com/v0ENwXW.png)
-> Instagrab - Easily grab or download instagram content 
+> Instagrab - Easily grab or download Instagram content 
 
 # Installation
 ```bash
