@@ -12,7 +12,7 @@ use DOMDocument;
  * @copyright 2017 Zeeshan Ahmed
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
  */
-class Downloader
+class Grabber
 {
     
     /**
@@ -77,7 +77,7 @@ class Downloader
     /**
      * Set the url from where media file will be downloaded.
      */
-    public function setFileUrl() : Downloader
+    public function setFileUrl() : Grabber
     {
         if (array_key_exists('og:image', $this->metaTags)) {
             $this->fileUrl = $this->metaTags['og:image'];
@@ -101,7 +101,7 @@ class Downloader
     /**
      * @param string $html
      */
-    public function setMetaTags($html) : Downloader
+    public function setMetaTags($html) : Grabber
     {
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
@@ -127,6 +127,19 @@ class Downloader
     public function getDownloadUrl() : string
     {
         return $this->fileUrl;
+    }
+
+    public function download(string $path) 
+    {
+        if (!is_dir($path) || !is_writable($path)) {
+            throw new Exception('Given path does not exist or is not writable');
+        }
+
+        $fileName = basename($this->fileUrl);
+
+        $path = rtrim($path, '') . '/' . $fileName;
+
+        file_put_contents($path, file_get_contents($this->fileUrl));
     }
 
     /**
