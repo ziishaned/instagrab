@@ -15,9 +15,9 @@ use Zeeshan\Instagrab\Grabber;
 
 $grabber = new Grabber('https://www.instagram.com/p/BUZLoGyFXQX');
 ```
-Now download the image at some given path
+Now download the image
 ```php
-$grabber->download('~/Username/Downloads');
+$grabber->download();
 ```
 Or get the download URL
 ```php
