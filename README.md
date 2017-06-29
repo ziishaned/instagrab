@@ -15,7 +15,7 @@ use Zeeshan\Instagrab\Grabber;
 
 $grabber = new Grabber('https://www.instagram.com/p/BUZLoGyFXQX');
 ```
-Now download the image
+Now download the media file
 ```php
 $grabber->download();
 ```
