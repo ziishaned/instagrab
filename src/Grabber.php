@@ -152,9 +152,6 @@ class Grabber
      */
     private function validateUrl(string $url) : bool
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            return false;
-        }
-        return true;
+        return filter_var($url, FILTER_VALIDATE_URL);
     }
 }
