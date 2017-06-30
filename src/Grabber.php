@@ -6,7 +6,7 @@ use Exception;
 use DOMDocument;
 
 /**
- * Download photos and videos directly from instagram.
+ * Download photos and videos directly from Instagram.
  *
  * @author    Zeeshan Ahmed <ziishaned@gmail.com>
  * @copyright 2017 Zeeshan Ahmed
@@ -30,7 +30,7 @@ class Grabber
     protected $fileUrl;
 
     /**
-     * Meta tags that are avaliable in instagram link.
+     * Meta tags that are avaliable in Instagram link.
      *
      * @var array
      */
@@ -42,7 +42,7 @@ class Grabber
     public function __construct(string $url)
     {
         if (!$this->validateUrl($url)) {
-            throw new Exception("Url is not valid.");
+            throw new Exception('Url is not valid.');
         }
 
         $this->url = $url;
@@ -63,7 +63,7 @@ class Grabber
     }
 
     /**
-     * Get the html from the instagram link.
+     * Get the html from the Instagram link.
      *
      * @return void
      */
@@ -85,6 +85,7 @@ class Grabber
         }
 
         $this->fileUrl = $this->metaTags['og:video'];
+        
         return $this;
     }
 
@@ -130,13 +131,13 @@ class Grabber
     }
 
     /**
-     * Directly dowload the media file.
+     * Directly download the media file.
      */
     public function download()
     {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename='.basename($this->fileUrl));
+        header('Content-Disposition: attachment; filename=' . basename($this->fileUrl));
         header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
